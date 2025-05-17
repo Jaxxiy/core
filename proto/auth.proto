@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package auth;
+package proto;
 
-option go_package = "github.com/jaxxiy/newforum/core/proto";
+option go_package = "github.com/jaxxiy/core/proto";
 
 service AuthService {
   rpc GetUserByID(GetUserRequest) returns (UserResponse) {}
@@ -10,7 +10,7 @@ service AuthService {
 }
 
 message GetUserRequest {
-  int32 user_id = 1;
+  int64 user_id = 1;  // Изменил на int64 для соответствия с кодом
 }
 
 message GetUserByTokenRequest {
@@ -18,8 +18,10 @@ message GetUserByTokenRequest {
 }
 
 message UserResponse {
-  int32 id = 1;
+  int64 id = 1;       // Изменил на int64 для соответствия
   string username = 2;
   string email = 3;
   string role = 4;
-} 
+  int64 created_at = 5;  // Добавил поле
+  int64 updated_at = 6;  // Добавил поле
+}
